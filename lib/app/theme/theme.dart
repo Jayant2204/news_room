@@ -7,7 +7,8 @@ class AppTheme {
   const AppTheme();
 
   static ThemeData darkTheme = ThemeData.dark().copyWith(
-    backgroundColor: AppColor.background,
+    backgroundColor: AppColor.bright,
+    scaffoldBackgroundColor: AppColor.bright,
     primaryColor: AppColor.background,
     accentColor: AppColor.lightblack,
     primaryColorDark: AppColor.dark,
@@ -16,7 +17,7 @@ class AppTheme {
     textTheme: TextTheme(bodyText2: TextStyle(color: AppColor.titleTextColor)),
     iconTheme: IconThemeData(color: AppColor.blue),
     bottomAppBarColor: AppColor.lightblack,
-    appBarTheme: AppBarTheme(color: AppColor.background, elevation: 0),
+    appBarTheme: AppBarTheme(color: AppColor.bright, elevation: 0),
     colorScheme: ColorScheme(
         primary: AppColor.background,
         primaryVariant: AppColor.background,
