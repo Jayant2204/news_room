@@ -17,24 +17,26 @@ class NewsShowCaseScreen extends StatelessWidget {
         actions: [
           IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: _newsController.fetchArticleFromAPI())
+              onPressed: () async =>
+                  await _newsController.fetchArticleFromAPI())
         ],
       ),
       //Share Button using FAB
       floatingActionButton: FloatingActionButton.extended(
         onPressed: null,
         label: Text("Share"),
-        icon: Icon(CupertinoIcons.share_up),
+        icon: Icon(CupertinoIcons.share),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       body: Container(
+          padding: const EdgeInsets.all(16),
           child: Swiper(
-        itemCount: _newsController.obj.length,
-        itemBuilder: (context, index) {
-          return NewsCardWidget(article: _newsController.obj[index]);
-        },
-      )),
+            itemCount: _newsController.obj.length,
+            itemBuilder: (context, index) {
+              return NewsCardWidget(article: _newsController.obj[index]);
+            },
+          )),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news_room/app/routes/router.dart';
+import 'package:news_room/app/theme/theme.dart';
 
 // import 'app/modules/SplashScreen/splashScreen.dart';
 import 'app/modules/news/newsPage.dart';
@@ -18,9 +19,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       navigatorKey: Get.key,
       title: 'Flutter Demo',
-      theme: ThemeData.dark(),
+      theme: AppTheme.darkTheme,
       home: NewsShowCaseScreen(),
       getPages: Router.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

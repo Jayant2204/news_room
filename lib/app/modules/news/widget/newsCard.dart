@@ -10,28 +10,46 @@ class NewsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1.0,
-            child: CachedNetworkImage(
-              imageUrl: article.urlToImage,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: Container(
+        color: theme.accentColor,
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 4 / 3,
+              child: CachedNetworkImage(
+                imageUrl: article.urlToImage ?? "",
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Text(article.title, style: theme.textTheme.headline6),
-          Text(
-            timeago.format(article.publishedAt),
-            style: theme.accentTextTheme.caption,
-          ),
-          Text(
-            article.description,
-            style: theme.textTheme.bodyText2,
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                article.title ?? "",
+                style: theme.textTheme.headline6,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                article.publishedAt != null
+                    ? timeago.format(article.publishedAt)
+                    : "",
+                style: theme.textTheme.bodyText2,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                article.description ?? "",
+                style: theme.textTheme.bodyText2,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
