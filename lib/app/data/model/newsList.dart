@@ -16,14 +16,15 @@ class NewsList {
 
   String toRawJson() => json.encode(toJson());
 
-  factory NewsList.fromJson(Map<String, dynamic> json) => NewsList(
+  factory NewsList.fromJson(Map<String, dynamic> json, [String lable]) =>
+      NewsList(
         status: json["status"] == null ? null : json["status"],
         totalResults:
             json["totalResults"] == null ? null : json["totalResults"],
         articles: json["articles"] == null
             ? null
             : List<Article>.from(
-                json["articles"].map((x) => Article.fromJson(x))),
+                json["articles"].map((x) => Article.fromJson(x, lable))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -37,7 +38,6 @@ class NewsList {
 
 class Article {
   Article({
-    this.source,
     this.author,
     this.title,
     this.description,
@@ -45,9 +45,9 @@ class Article {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    this.lable,
   });
 
-  final Source source;
   final String author;
   final String title;
   final String description;
@@ -55,13 +55,14 @@ class Article {
   final String urlToImage;
   final DateTime publishedAt;
   final String content;
+  final String lable;
 
   factory Article.fromRawJson(String str) => Article.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: json["source"] == null ? null : Source.fromJson(json["source"]),
+  factory Article.fromJson(Map<String, dynamic> json, [String lable]) =>
+      Article(
         author: json["author"] == null ? null : json["author"],
         title: json["title"] == null ? null : json["title"],
         description: json["description"] == null ? null : json["description"],
@@ -71,10 +72,10 @@ class Article {
             ? null
             : DateTime.parse(json["publishedAt"]),
         content: json["content"] == null ? null : json["content"],
+        lable: json["lable"] ?? lable,
       );
 
   Map<String, dynamic> toJson() => {
-        "source": source == null ? null : source.toJson(),
         "author": author == null ? null : author,
         "title": title == null ? null : title,
         "description": description == null ? null : description,
@@ -83,29 +84,6 @@ class Article {
         "publishedAt":
             publishedAt == null ? null : publishedAt.toIso8601String(),
         "content": content == null ? null : content,
-      };
-}
-
-class Source {
-  Source({
-    this.id,
-    this.name,
-  });
-
-  final String id;
-  final String name;
-
-  factory Source.fromRawJson(String str) => Source.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: json["id"] == null ? null : json["id"],
-        name: json["name"] == null ? null : json["name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "name": name == null ? null : name,
+        "lable": lable == null ? null : lable,
       };
 }

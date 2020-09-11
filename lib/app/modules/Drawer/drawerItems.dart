@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:news_room/app/modules/news/newsController.dart';
 
 class DrawerItemsWidget extends StatelessWidget {
+  final int index;
   final bool isSelected;
   final IconData icon;
   final String lable;
+  final VoidCallback onTap;
 
   DrawerItemsWidget(
       {Key key,
       this.isSelected = false,
       this.icon = Icons.ac_unit,
-      this.lable = ""})
+      this.lable = "",
+      this.onTap,
+      this.index})
       : super(key: key);
 
-  final NewsController controller = Get.find<NewsController>();
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return GestureDetector(
-      onTap: () {
-        controller.fetchArticleFromAPIforCategory(lable);
-      },
+      onTap: onTap,
       child: Container(
         height: 70,
         decoration: BoxDecoration(

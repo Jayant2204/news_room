@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:news_room/app/data/provider/constants.dart';
+import 'package:news_room/app/modules/Drawer/DrawerController.dart';
 import 'package:news_room/app/modules/Drawer/drawerItems.dart';
 import 'package:news_room/app/theme/color.dart';
 
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({Key key}) : super(key: key);
+class HomeDrawer extends StatefulWidget {
+  HomeDrawer({Key key}) : super(key: key);
+
+  @override
+  _HomeDrawerState createState() => _HomeDrawerState();
+}
+
+class _HomeDrawerState extends State<HomeDrawer> {
+  final HamController hamController = Get.find();
+
+  onDrawerTileTap(int index) async {
+    //Updates the value of index
+    hamController.setIndex(index);
+
+    Get.back();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,24 +106,28 @@ class HomeDrawer extends StatelessWidget {
               height: 10,
             ),
             DrawerItemsWidget(
-              isSelected: true,
+              isSelected: hamController.obj == 0,
               icon: Icons.book,
-              lable: "All News",
+              lable: Constant.allNews,
+              onTap: () => onDrawerTileTap(0),
             ),
             DrawerItemsWidget(
-              isSelected: false,
+              isSelected: hamController.obj == 1,
               icon: Icons.group_work,
-              lable: "World",
+              lable: Constant.worldNews,
+              onTap: () => onDrawerTileTap(1),
             ),
             DrawerItemsWidget(
-              isSelected: false,
+              isSelected: hamController.obj == 2,
               icon: Icons.flag,
-              lable: "India",
+              lable: Constant.indiaNews,
+              onTap: () => onDrawerTileTap(2),
             ),
             DrawerItemsWidget(
-              isSelected: false,
+              isSelected: hamController.obj == 3,
               icon: Icons.vpn_lock,
-              lable: "Sports",
+              lable: Constant.sportsNews,
+              onTap: () => onDrawerTileTap(3),
             ),
           ],
         ),

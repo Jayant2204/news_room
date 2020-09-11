@@ -38,11 +38,19 @@ class NewsCardWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  article.publishedAt != null
-                      ? timeago.format(article.publishedAt)
-                      : "",
-                  style: theme.textTheme.bodyText2,
+                child: Row(
+                  children: [
+                    Text(
+                      article.lable + " . ",
+                      style: theme.textTheme.bodyText2,
+                    ),
+                    Text(
+                      article.publishedAt != null
+                          ? timeago.format(article.publishedAt)
+                          : "",
+                      style: theme.textTheme.bodyText2,
+                    ),
+                  ],
                 ),
               ),
               Padding(

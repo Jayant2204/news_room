@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:news_room/app/routes/router.dart';
 import 'package:news_room/app/theme/theme.dart';
 
 // import 'app/modules/SplashScreen/splashScreen.dart';
 import 'app/modules/news/newsPage.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await GetStorage.init();
   runApp(MyApp());
 }
 
