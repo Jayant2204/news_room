@@ -105,6 +105,9 @@ class _HomeDrawerState extends State<HomeDrawer> {
             SizedBox(
               height: 10,
             ),
+
+            // couldn't find Icons that were present in design so added dummy Icons.
+
             DrawerItemsWidget(
               isSelected: hamController.obj == 0,
               icon: Icons.book,
@@ -128,6 +131,14 @@ class _HomeDrawerState extends State<HomeDrawer> {
               icon: Icons.vpn_lock,
               lable: Constant.sportsNews,
               onTap: () => onDrawerTileTap(3),
+            ),
+
+            // Extra topic added just for improvements.
+            DrawerItemsWidget(
+              isSelected: hamController.obj == 4,
+              icon: Icons.desktop_mac,
+              lable: Constant.techNews,
+              onTap: () => onDrawerTileTap(4),
             ),
           ],
         ),

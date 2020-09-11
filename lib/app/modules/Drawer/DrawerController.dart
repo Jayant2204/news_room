@@ -36,6 +36,10 @@ class HamController extends GetxController {
         await controller.fetchArticleFromAPIforCategory(Constant.sportsNews,
             category: "sports");
         break;
+      case 4:
+        await controller.fetchArticleFromAPIforCategory(Constant.sportsNews,
+            category: "technology");
+        break;
       default:
         await controller.fetchArticleFromAPIforCategory("General");
     }
