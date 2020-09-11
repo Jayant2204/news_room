@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:news_room/app/data/model/newsList.dart';
@@ -7,8 +11,11 @@ import 'service/newsServiceCaller.dart';
 
 class NewsController extends GetxController {
   final NewsApiProvider serviceCaller = NewsApiProvider();
-  GetStorage box = GetStorage();
+  final GetStorage box = GetStorage();
+
   List<Article> obj = List<Article>().obs;
+  StreamSubscription<ConnectivityResult> subscription;
+
   set setobj(value) => this.obj.addAll(value);
   List<Article> get getobj => this.obj;
 
@@ -19,8 +26,28 @@ class NewsController extends GetxController {
 
   @override
   void onInit() {
+    subscription = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      // Got a new connectivity status!
+      if (result == ConnectivityResult.none) {
+        Get.snackbar("Connection Lost", "Oops! looks like you are offline",
+            backgroundColor: Colors.red);
+      } else {
+        Get.snackbar(
+            "Connection established", "Hoorey! you are back online now",
+            backgroundColor: Colors.green);
+      }
+    });
     fetchAllEnglishNewsArticle("General");
+
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    subscription.cancel();
+    super.onClose();
   }
 
   fetchArticleFromAPIforCategory(String lable,
