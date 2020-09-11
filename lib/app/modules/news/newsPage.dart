@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
+import 'package:news_room/app/modules/Drawer/drawer.dart';
 import 'package:news_room/app/modules/news/newsController.dart';
 import 'package:news_room/app/modules/news/widget/newsCard.dart';
 import 'package:news_room/app/utils/shareFunction.dart';
@@ -13,6 +14,7 @@ class NewsShowCaseScreen extends StatelessWidget {
   final NewsController _newsController = Get.put(NewsController());
   final ScreenshotController controller = ScreenshotController();
 
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   onShareNews(String message) async {
     File file = await controller.capture();
     shareFiles(
@@ -25,9 +27,17 @@ class NewsShowCaseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     int index = 0;
     return Scaffold(
+      key: scaffoldKey,
       // AppBar for Title and drawer Navigation.
       appBar: AppBar(
         title: Text("My Feed"),
+        leading: IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () {
+              !scaffoldKey.currentState.isDrawerOpen
+                  ? scaffoldKey.currentState.openDrawer()
+                  : Get.back();
+            }),
         actions: [
           IconButton(
               icon: Icon(Icons.refresh),
@@ -35,6 +45,9 @@ class NewsShowCaseScreen extends StatelessWidget {
                   await _newsController.fetchArticleFromAPI())
         ],
       ),
+
+      drawer: HomeDrawer(),
+
       //Share Button using FAB
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
