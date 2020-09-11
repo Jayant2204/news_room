@@ -18,9 +18,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   get: ^3.8.0
-  sqflite: ^1.3.1+1
   flutter_swiper: ^1.1.6
-  path_provider: ^1.6.14
   dio: ^3.0.10
   cached_network_image: ^2.3.2+1
   timeago: ^2.0.27
