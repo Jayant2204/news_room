@@ -33,11 +33,12 @@ class NewsController extends GetxController {
       if (result == ConnectivityResult.none) {
         Get.snackbar("Connection Lost", "Oops! looks like you are offline",
             backgroundColor: Colors.red);
-      } else {
-        Get.snackbar(
-            "Connection established", "Hoorey! you are back online now",
-            backgroundColor: Colors.green);
       }
+      // else {
+      //   Get.snackbar(
+      //       "Connection established", "Hoorey! you are back online now",
+      //       backgroundColor: Colors.green);
+      // }
     });
     fetchAllEnglishNewsArticle("General");
 

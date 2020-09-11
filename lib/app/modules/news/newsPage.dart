@@ -48,6 +48,8 @@ class NewsShowCaseScreen extends StatelessWidget {
       ),
 
       drawer: HomeDrawer(),
+      drawerEnableOpenDragGesture: true,
+      drawerEdgeDragWidth: 50,
 
       //Share Button using FAB
       floatingActionButton: FloatingActionButton.extended(
