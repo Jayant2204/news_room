@@ -20,13 +20,14 @@ class NewsCardWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              AspectRatio(
-                aspectRatio: 4 / 3,
-                child: CachedNetworkImage(
-                  imageUrl: article.urlToImage ?? "",
-                  fit: BoxFit.cover,
+              if (article.urlToImage != null && article.urlToImage != "")
+                AspectRatio(
+                  aspectRatio: 4 / 3,
+                  child: CachedNetworkImage(
+                    imageUrl: article.urlToImage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
